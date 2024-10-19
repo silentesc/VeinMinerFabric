@@ -29,7 +29,7 @@ public class PlayerBlockBreakEvent {
             return true;
         if (player.isCreative())
             return true;
-        if (player.isSneaking())
+        if (!player.isSneaking())
             return true;
         if (!(mainHandItemStack.getItem() instanceof ToolItem mainHandToolItem))
             return true;
