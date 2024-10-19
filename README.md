@@ -6,6 +6,6 @@
 # How to use
 - Download [fabric](https://fabricmc.net/use/installer/)
 - Download [fabric api](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-- Download this mod
+- Download [this mod](https://github.com/silentesc/VeinMinerFabric/releases/latest)
 - Put both downloaded jars into the mods folder under minecraft\mods
 - Start minecraft
