@@ -4,8 +4,8 @@
 - Also mines other ores connected to the ore type (e.g. Diamond Ore hiding behind Coal Ore)
 
 # How to use
-- Download [fabric](https://fabricmc.net/use/installer/)
+- Download and install [fabric](https://fabricmc.net/use/installer/)
 - Download [fabric api](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 - Download [this mod](https://github.com/silentesc/VeinMinerFabric/releases/latest)
 - Put both downloaded jars into the mods folder under minecraft\mods
-- Start minecraft
+- Start minecraft (your fabric profile)
