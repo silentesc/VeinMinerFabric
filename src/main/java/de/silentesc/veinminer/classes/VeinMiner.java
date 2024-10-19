@@ -5,6 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -38,12 +42,9 @@ public class VeinMiner {
 
         // Mine every block
         for (VeinMinerBlock veinMinerBlock : candidates) {
+            if (!veinMinerRunning) break;
             mineBlock(veinMinerBlock);
         }
-    }
-
-    public void stopVeinMiner() {
-        veinMinerRunning = false;
     }
 
     /*
@@ -90,10 +91,15 @@ public class VeinMiner {
     }
 
     private void mineBlock(VeinMinerBlock veinMinerBlock) {
-        if (!veinMinerRunning) return;
+        if (!veinMinerRunning)
+            return;
+        if (!isItemStackValid(player.getMainHandStack())) {
+            veinMinerRunning = false;
+            return;
+        }
 
         // Damage player tool (also checks for enchantments like unbreaking. also breaks the tool)
-        this.player.getMainHandStack().damage(1, player, EquipmentSlot.MAINHAND);
+        player.getMainHandStack().damage(1, player, EquipmentSlot.MAINHAND);
 
         // Drop items and xp (works with mending, fortune, silk touch)
         Block.getDroppedStacks(veinMinerBlock.state(), (ServerWorld) world, veinMinerBlock.pos(), veinMinerBlock.blockEntity(), player, player.getMainHandStack())
@@ -105,5 +111,15 @@ public class VeinMiner {
 
         // Play sound
         world.playSound(null, veinMinerBlock.pos(), SoundEvents.BLOCK_BAMBOO_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+    }
+
+    private boolean isItemStackValid(ItemStack itemStack) {
+        if (player.getMainHandStack().isEmpty())
+            return false;
+
+        if (!(itemStack.getItem() instanceof ToolItem mainHandToolItem))
+            return false;
+
+        return mainHandToolItem instanceof AxeItem || mainHandToolItem instanceof PickaxeItem;
     }
 }
