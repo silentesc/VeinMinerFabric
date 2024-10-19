@@ -34,11 +34,11 @@ public class VeinMiner {
         veinMinerRunning = true;
 
         // Fill the candidates list
-        List<VeinMinerBlock> candidates = searchForCandidates(originalBlock);
+        List<VeinMinerBlock> candidates = getCandidates(originalBlock);
 
         // Mine every block
         for (VeinMinerBlock veinMinerBlock : candidates) {
-            veinMineBlock(veinMinerBlock);
+            mineBlock(veinMinerBlock);
         }
     }
 
@@ -50,7 +50,7 @@ public class VeinMiner {
      * Private utils
      */
 
-    private List<VeinMinerBlock> searchForCandidates(VeinMinerBlock veinMinerBlock) {
+    private List<VeinMinerBlock> getCandidates(VeinMinerBlock veinMinerBlock) {
         List<VeinMinerBlock> candidates = new ArrayList<>();
         candidates.add(veinMinerBlock);
 
@@ -89,7 +89,7 @@ public class VeinMiner {
         return candidates;
     }
 
-    private void veinMineBlock(VeinMinerBlock veinMinerBlock) {
+    private void mineBlock(VeinMinerBlock veinMinerBlock) {
         if (!veinMinerRunning) return;
 
         // Damage player tool (also checks for enchantments like unbreaking. also breaks the tool)
