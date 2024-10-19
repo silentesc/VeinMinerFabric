@@ -29,6 +29,8 @@ public class PlayerBlockBreakEvent {
             return true;
         if (player.isCreative())
             return true;
+        if (player.isSneaking())
+            return true;
         if (!(mainHandItemStack.getItem() instanceof ToolItem mainHandToolItem))
             return true;
         if (!(mainHandToolItem instanceof AxeItem && VeinMinerBlocks.getLogBlocks().contains(block)) && !(mainHandToolItem instanceof PickaxeItem && VeinMinerBlocks.getOreBlocks().contains(block)))
