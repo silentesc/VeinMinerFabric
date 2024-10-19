@@ -8,6 +8,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VeinMinerBlocks {
+    private static final List<Block> logBlocks = new ArrayList<>(
+            Arrays.asList(
+                    Blocks.ACACIA_LOG,
+                    Blocks.BIRCH_LOG,
+                    Blocks.CHERRY_LOG,
+                    Blocks.JUNGLE_LOG,
+                    Blocks.OAK_LOG,
+                    Blocks.DARK_OAK_LOG,
+                    Blocks.MANGROVE_LOG,
+                    Blocks.SPRUCE_LOG
+            )
+    );
+
     private static final List<Block> oreBlocks = new ArrayList<>(
             Arrays.asList(
                     Blocks.COAL_ORE, Blocks.DEEPSLATE_COAL_ORE,
@@ -22,6 +35,10 @@ public class VeinMinerBlocks {
                     Blocks.NETHER_GOLD_ORE
             )
     );
+
+    public static List<Block> getLogBlocks() {
+        return logBlocks;
+    }
 
     public static List<Block> getOreBlocks() {
         return oreBlocks;
